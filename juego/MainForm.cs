@@ -46,16 +46,13 @@ namespace PiedraPapelTijera
             string tiradaMaquina = (string)opciones[random.Next(opciones.Count)];
             ((Jugador)jugadores[1]).HacerTiro(tiradaMaquina);
 
-            // Mostrar tiradas
             lblUsuario.Text = $"Usuario: {((Jugador)jugadores[0]).TiradaActual}";
             lblMaquina.Text = $"Máquina: {((Jugador)jugadores[1]).TiradaActual}";
 
-            // Determinar resultado
             string resultado = DeterminarResultado(tiradaUsuario, tiradaMaquina);
             lblResultado.Text = resultado;
             lblResultado.ForeColor = Color.Black;
 
-            // Cambiar color según resultado
             if (resultado.Contains("Ganaste"))
                 lblResultado.ForeColor = Color.Green;
             else if (resultado.Contains("máquina"))
@@ -77,7 +74,6 @@ namespace PiedraPapelTijera
             return "¡La máquina ganó!";
         }
 
-        // Evento para reiniciar el juego al hacer doble clic en el resultado
         private void lblResultado_DoubleClick(object sender, EventArgs e)
         {
             lblUsuario.Text = "Usuario: ";
