@@ -19,11 +19,11 @@ namespace PiedraPapelTijera
 
         private void InicializarJugadores()
         {
-            // Crear jugador usuario
+        
             jugadores.Add(new Jugador("Usuario"));
 
-            // Crear jugador máquina
-            jugadores.Add(new Jugador("Máquina"));
+         
+            jugadores.Add(new Jugador("MÃ¡quina"));
         }
 
         private void btnPiedra_Click(object sender, EventArgs e)
@@ -43,49 +43,47 @@ namespace PiedraPapelTijera
 
         private void Jugar(string tiradaUsuario)
         {
-            // Usuario hace su tirada
+          
             ((Jugador)jugadores[0]).HacerTiro(tiradaUsuario);
 
-            // Máquina hace tirada aleatoria
             string tiradaMaquina = (string)opciones[random.Next(opciones.Count)];
             ((Jugador)jugadores[1]).HacerTiro(tiradaMaquina);
 
-            // Mostrar tiradas
             lblUsuario.Text = $"Usuario: {((Jugador)jugadores[0]).TiradaActual}";
-            lblMaquina.Text = $"Máquina: {((Jugador)jugadores[1]).TiradaActual}";
+            lblMaquina.Text = $"MÃ¡quina: {((Jugador)jugadores[1]).TiradaActual}";
 
-            // Determinar resultado
+      
             string resultado = DeterminarResultado(tiradaUsuario, tiradaMaquina);
             lblResultado.Text = resultado;
             lblResultado.ForeColor = Color.Black;
 
-            // Cambiar color según resultado
+    
             if (resultado.Contains("Ganaste"))
                 lblResultado.ForeColor = Color.Green;
-            else if (resultado.Contains("máquina"))
+            else if (resultado.Contains("mÃ¡quina"))
                 lblResultado.ForeColor = Color.Red;
         }
 
         private string DeterminarResultado(string usuario, string maquina)
         {
             if (usuario == maquina)
-                return "¡Empate!";
+                return "Â¡Empate!";
 
             if ((usuario == "Piedra" && maquina == "Tijera") ||
                 (usuario == "Papel" && maquina == "Piedra") ||
                 (usuario == "Tijera" && maquina == "Papel"))
             {
-                return "¡Ganaste!";
+                return "Â¡Ganaste!";
             }
 
-            return "¡La máquina ganó!";
+            return "Â¡La mÃ¡quina ganÃ³!";
         }
 
         // Evento para reiniciar el juego al hacer doble clic en el resultado
         private void lblResultado_DoubleClick(object sender, EventArgs e)
         {
             lblUsuario.Text = "Usuario: ";
-            lblMaquina.Text = "Máquina: ";
+            lblMaquina.Text = "MÃ¡quina: ";
             lblResultado.Text = "";
         }
     }
